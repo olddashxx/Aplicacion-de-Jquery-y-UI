@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanVogue Studio - Tienda de Ropa & Catálogo Interactivo</title>
+  <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome para iconos de moda, interfaz y redes sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="theme-light">
+
+  <!-- ==========================================
+       1. ENCABEZADO Y MENÚ HAMBURGUESA + MODO OSCURO/CLARO
+       ========================================== -->
+  <header id="main-header">
+    <div class="header-container">
+
+      <!-- Logotipo de la Tienda: UrbanVogue Studio -->
+      <div class="logo-box">
+        <span class="logo-icon"><i class="fa-solid fa-shirt"></i></span>
+        <h1 class="brand-title">Urban<span>Vogue</span> <small class="brand-sub">Boutique</small></h1>
+        <!-- Indicador de Estado UI -->
+        <div class="status-indicator-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">Tienda Online Activa</span>
+        </div>
+      </div>
+
+      <!-- Barra de navegación con Menú Hamburguesa -->
+      <nav id="navbar" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#hero-section" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li><a href="#filter-section" class="nav-link"><i class="fa-solid fa-tags"></i> Catálogo de Ropa</a></li>
+          <li><a href="#booking-section" class="nav-link"><i class="fa-solid fa-bag-shopping"></i> Realizar Pedido</a></li>
+          <li><a href="#event-log-section" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Bitácora Timestamp</a></li>
+          <li><a href="#rules-section" class="nav-link"><i class="fa-solid fa-ruler-horizontal"></i> Guía y Garantías</a></li>
+          <li><a href="#social-section" class="nav-link"><i class="fa-solid fa-share-nodes"></i> Redes Sociales</a></li>
+          <li><a href="#contact-section" class="nav-link"><i class="fa-solid fa-location-dot"></i> Showroom Central</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de cabecera: Modo Oscuro/Claro y Botón Hamburguesa -->
+      <div class="header-actions">
+        <!-- Función: Modo Oscuro / Claro -->
+        <button id="theme-toggle-btn" class="action-btn theme-btn" aria-label="Cambiar tema claro/oscuro"
+          title="Cambiar tema claro/oscuro">
+          <i class="fa-solid fa-moon icon-moon"></i>
+          <i class="fa-solid fa-sun icon-sun" style="display: none;"></i>
+        </button>
+
+        <!-- Función: Botón Menú Hamburguesa -->
+        <button id="hamburger-btn" class="action-btn hamburger-btn" aria-label="Abrir menú de navegación">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       SECCIÓN HERO / PRESENTACIÓN TIENDA DE ROPA
+       ========================================== -->
+  <section id="hero-section" class="hero-section">
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa-solid fa-fire"></i> Nueva Colección 2026: Streetwear & Moda Contemporánea</span>
+      <h2>UrbanVogue Studio: Viste con Identidad Propia</h2>
+      <p>Explora nuestro catálogo interactivo de prendas exclusivas confeccionadas en algodón peruano de alto gramaje,
+        denim premium y cortes modernos. Filtra por categoría, elige tu talla ideal y recibe tu pedido hoy mismo.</p>
+      <div class="hero-actions">
+        <a href="#filter-section" class="btn btn-primary"><i class="fa-solid fa-layer-group"></i> Explorar Catálogo</a>
+        <a href="#booking-section" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i> Comprar Ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       2. SECCIÓN DE FILTRADOS POR TIPOS Y SUBTIPOS DE PRENDAS
+       ========================================== -->
+  <section id="filter-section" class="filter-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-sliders"></i> Catálogo Interactivo de Prendas</h3>
+      <p>Filtra dinámicamente por <strong>Tipo de Prenda</strong> y <strong>Colección / Estilo</strong> para encontrar tu outfit perfecto.</p>
+
+      <!-- Pestaña Acordeón para Plegar / Desplegar Catálogo (.slideToggle) -->
+      <button type="button" id="toggle-catalog-btn" class="accordion-toggle-btn" aria-expanded="true">
+        <span class="toggle-text"><i class="fa-solid fa-eye-slash"></i> Ocultar Catálogo de Ropa</span>
+        <i class="fa-solid fa-chevron-up toggle-icon"></i>
+      </button>
+    </div>
+
+    <!-- Contenedor Plegable del Catálogo (Filtros + Grilla de Tarjetas) -->
+    <div id="catalog-collapsible-wrapper" class="catalog-collapsible-content">
+
+      <!-- Controles de Filtros -->
+      <div class="filter-controls-card">
+
+        <!-- Filtro Tipo Principal: Categoría de Prenda -->
+        <div class="filter-group">
+          <label class="filter-title"><i class="fa-solid fa-shirt"></i> 1. Tipo de Prenda:</label>
+          <div class="filter-buttons-wrapper" id="type-filter-buttons">
+            <button class="filter-btn type-btn active" data-type="all">Todas las prendas</button>
+            <button class="filter-btn type-btn" data-type="hoodies"><i class="fa-solid fa-vest-patches"></i> Hoodies & Poleras</button>
+            <button class="filter-btn type-btn" data-type="pantalones"><i class="fa-solid fa-socks"></i> Jeans & Cargo</button>
+            <button class="filter-btn type-btn" data-type="chaquetas"><i class="fa-solid fa-user-tie"></i> Chaquetas & Abrigos</button>
+          </div>
+        </div>
+
+        <!-- Filtro Subtipo: Estilo y Colección -->
+        <div class="filter-group">
+          <label class="filter-title"><i class="fa-solid fa-star"></i> 2. Subtipo de Colección y Estilo:</label>
+          <div class="filter-buttons-wrapper" id="subtype-filter-buttons">
+            <button class="filter-btn subtype-btn active" data-subtype="all">Todos los estilos</button>
+            <button class="filter-btn subtype-btn" data-subtype="vip"><i class="fa-solid fa-crown"></i> Edición Limitada VIP</button>
+            <button class="filter-btn subtype-btn" data-subtype="streetwear"><i class="fa-solid fa-bolt"></i> Urbano Streetwear</button>
+            <button class="filter-btn subtype-btn" data-subtype="casual"><i class="fa-solid fa-feather"></i> Casual Minimalista</button>
+            <button class="filter-btn subtype-btn" data-subtype="oferta"><i class="fa-solid fa-tag"></i> Precio de Oferta</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Grilla de Tarjetas de Prendas -->
+      <div class="courts-grid" id="courts-container">
+
+        <!-- Prenda 1: Hoodie Oversize - VIP Streetwear -->
+        <article class="court-card" data-type="hoodies" data-subtype="vip streetwear">
+          <div class="court-badge badge-vip">VIP • Edición Limitada</div>
+          <img
+            src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=85"
+            alt="Hoodie Oversize Tokyo Heavyweight" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 1: Hoodie "Tokyo Heavyweight" (Oversize)</h4>
+            <p class="court-desc">Canguro confeccionado en algodón peruano afranelado de 420 GSM. Costuras reforzadas, capucha doble estructurada y caída relajada urbana.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-certificate"></i> Algodón 420g</span>
+              <span class="tag"><i class="fa-solid fa-maximize"></i> Corte Oversize</span>
+              <span class="tag"><i class="fa-solid fa-palette"></i> Negro / Gris</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">180 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-1"
+                data-court-name="Prenda 1: Hoodie Tokyo Heavyweight" data-court-price="180">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Prenda 2: Chaqueta Bomber - VIP Streetwear -->
+        <article class="court-card" data-type="chaquetas" data-subtype="vip streetwear">
+          <div class="court-badge badge-vip">VIP • Impermeable</div>
+          <img
+            src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=85"
+            alt="Chaqueta Bomber Neo-Vanguard" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 2: Chaqueta "Neo-Vanguard" (Bomber Pro)</h4>
+            <p class="court-desc">Chaqueta tipo aviador con tejido técnico repelente al agua, cierres metálicos YKK, bolsillo utilitario en manga y forro térmico acolchado.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-droplet-slash"></i> Impermeable</span>
+              <span class="tag"><i class="fa-solid fa-wind"></i> Cortaviento</span>
+              <span class="tag"><i class="fa-solid fa-medal"></i> Cierres YKK</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">240 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-2"
+                data-court-name="Prenda 2: Chaqueta Neo-Vanguard" data-court-price="240">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Prenda 3: Pantalón Cargo - Streetwear -->
+        <article class="court-card" data-type="pantalones" data-subtype="streetwear">
+          <div class="court-badge">Streetwear • Cargo</div>
+          <img
+            src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=700&q=85"
+            alt="Pantalón Cargo Tactical Street" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 3: Pantalón Cargo "Tactical Street"</h4>
+            <p class="court-desc">Elaborado en gabardina elástica ripstop de alta resistencia con 6 bolsillos funcionales, ajuste elástico en tobillos y calce ergonómico.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-box-archive"></i> 6 Bolsillos</span>
+              <span class="tag"><i class="fa-solid fa-arrows-left-right"></i> Tela Stretch</span>
+              <span class="tag"><i class="fa-solid fa-shield-halved"></i> Antidesgarro</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">165 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-3"
+                data-court-name="Prenda 3: Pantalón Cargo Tactical" data-court-price="165">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Prenda 4: Jean Denim - Casual -->
+        <article class="court-card" data-type="pantalones" data-subtype="casual">
+          <div class="court-badge">Casual • Denim 14oz</div>
+          <img
+            src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85"
+            alt="Jean Denim Vintage Relaxed Fit" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 4: Jean "Vintage Relaxed Fit" (Denim)</h4>
+            <p class="court-desc">Mezclilla clásica de 14 onzas con lavado ecológico stone-wash. Corte recto relajado que combina comodidad diaria y durabilidad superior.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-leaf"></i> Lavado Eco</span>
+              <span class="tag"><i class="fa-solid fa-layer-group"></i> Denim 14oz</span>
+              <span class="tag"><i class="fa-solid fa-check-double"></i> Corte Recto</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">150 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-4"
+                data-court-name="Prenda 4: Jean Vintage Relaxed Fit" data-court-price="150">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Prenda 5: Polera Boxy Fit - Casual Oferta -->
+        <article class="court-card" data-type="hoodies" data-subtype="casual oferta">
+          <div class="court-badge badge-eco">Oferta • Algodón Pima</div>
+          <img
+            src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85"
+            alt="Polera Boxy Fit Essential Minimal" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 5: Polera "Essential Minimal" (Boxy Fit)</h4>
+            <p class="court-desc">Polera de cuello redondo cerrado en 100% algodón Pima peinado. Textura ultra suave, transpirable y resistente al encogimiento tras el lavado.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-feather"></i> 100% Pima</span>
+              <span class="tag"><i class="fa-solid fa-sun"></i> Transpirable</span>
+              <span class="tag"><i class="fa-solid fa-coins"></i> Precio Promo</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">95 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-5"
+                data-court-name="Prenda 5: Polera Essential Minimal" data-court-price="95">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Prenda 6: Casaca Denim Sherpa - Casual Oferta Chaquetas -->
+        <article class="court-card" data-type="chaquetas" data-subtype="casual oferta">
+          <div class="court-badge badge-eco">Oferta • Temporada Invierno</div>
+          <img
+            src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=700&q=85"
+            alt="Casaca Denim Sherpa Winter" class="court-img">
+          <div class="court-info">
+            <h4>Prenda 6: Casaca "Sherpa Winter" (Denim + Corderito)</h4>
+            <p class="court-desc">Clásica chaqueta de mezclilla azul con interior y cuello forrados en suave corderito térmico sintético. Ideal para climas fríos con estilo atemporal.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-snowflake"></i> Forro Térmico</span>
+              <span class="tag"><i class="fa-solid fa-shirt"></i> Botones Bronce</span>
+              <span class="tag"><i class="fa-solid fa-tag"></i> Descuento</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">210 Bs <span>/ unidad</span></span>
+              <button class="btn btn-select-court" data-court-id="prenda-6"
+                data-court-name="Prenda 6: Casaca Sherpa Winter" data-court-price="210">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. SECCIÓN DE COMPRA: SELECCIÓN DE TALLAS, UNIDADES Y FORMULARIO
+       ========================================== -->
+  <section id="booking-section" class="booking-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-bag-shopping"></i> Pedido Directo y Reserva de Prendas</h3>
+      <p>Personaliza tu prenda elegida, verifica la disponibilidad de talla en vivo y completa tus datos de envío.</p>
+    </div>
+
+    <div class="booking-grid-wrapper">
+
+      <!-- Columna Izquierda: Configuración de Prenda, Talla y Cantidad -->
+      <div class="booking-schedule-card">
+        <h4><i class="fa-solid fa-sliders"></i> 1. Selección de Talla y Cantidad</h4>
+        <p class="schedule-subtitle">Elige la fecha de entrega y selecciona una talla con stock disponible:</p>
+
+        <!-- Fecha de Entrega / Despacho -->
+        <div class="form-row-single">
+          <label for="fecha-reserva">Fecha programada de entrega / recojo:</label>
+          <input type="date" id="fecha-reserva" name="fecha-reserva">
+          <span class="field-error" id="err-date" style="display: none;"></span>
+        </div>
+
+        <!-- Selector de Prenda -->
+        <div class="form-row-single">
+          <label for="select-cancha-reserva">Prenda del Catálogo:</label>
+          <select id="select-cancha-reserva">
+            <option value="prenda-1" data-precio="180" selected>Prenda 1: Hoodie Tokyo Heavyweight (180 Bs)</option>
+            <option value="prenda-2" data-precio="240">Prenda 2: Chaqueta Neo-Vanguard Bomber (240 Bs)</option>
+            <option value="prenda-3" data-precio="165">Prenda 3: Pantalón Cargo Tactical Street (165 Bs)</option>
+            <option value="prenda-4" data-precio="150">Prenda 4: Jean Vintage Relaxed Fit (150 Bs)</option>
+            <option value="prenda-5" data-precio="95">Prenda 5: Polera Essential Minimal (95 Bs)</option>
+            <option value="prenda-6" data-precio="210">Prenda 6: Casaca Sherpa Winter Denim (210 Bs)</option>
+          </select>
+        </div>
+
+        <!-- Grilla Rápida de Tallas (Botones interactivos jQuery) -->
+        <label class="schedule-block-title">Disponibilidad de Tallas en Stock:</label>
+        <div class="time-slots-grid" id="turnos-grid">
+          <button type="button" class="btn-slot" data-talla="XS" data-unidades="1">Talla XS (Disponible)</button>
+          <button type="button" class="btn-slot" data-talla="S" data-unidades="1">Talla S (Disponible)</button>
+          <button type="button" class="btn-slot ocupado" data-talla="M" data-unidades="0">Talla M (Agotado)</button>
+          <button type="button" class="btn-slot active-slot" data-talla="L" data-unidades="1">Talla L (Disponible)</button>
+          <button type="button" class="btn-slot" data-talla="XL" data-unidades="1">Talla XL (Disponible)</button>
+          <button type="button" class="btn-slot ocupado" data-talla="XXL" data-unidades="0">Talla XXL (Agotado)</button>
+        </div>
+
+        <!-- Selector de Talla y Cantidad de Unidades -->
+        <div class="custom-range-box">
+          <h5>Personaliza cantidad de unidades y tono de prenda:</h5>
+          <div class="range-inputs-group">
+            <div class="input-item">
+              <label for="select-talla">Talla Seleccionada:</label>
+              <select id="select-talla">
+                <option value="XS">Talla XS</option>
+                <option value="S">Talla S</option>
+                <option value="M">Talla M (Sin Stock)</option>
+                <option value="L" selected>Talla L</option>
+                <option value="XL">Talla XL</option>
+                <option value="XXL">Talla XXL (Sin Stock)</option>
+              </select>
+            </div>
+            <div class="input-item">
+              <label for="select-cantidad">Cantidad (Unidades):</label>
+              <select id="select-cantidad">
+                <option value="1" selected>1 Unidad</option>
+                <option value="2">2 Unidades</option>
+                <option value="3">3 Unidades</option>
+                <option value="4">4 Unidades</option>
+                <option value="5">5 Unidades</option>
+              </select>
+            </div>
+          </div>
+          <span class="field-error" id="err-hours" style="display: none; margin-top: 8px;"></span>
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: FORMULARIO DE DATOS DEL COMPRADOR -->
+      <div class="booking-form-card">
+        <h4><i class="fa-solid fa-file-invoice-dollar"></i> 2. Datos del Comprador y Envío</h4>
+        <p class="form-instructions">Completa los campos obligatorios para procesar y despachar tu orden:</p>
+
+        <form id="reservation-form" action="#" method="POST">
+
+          <!-- Nombre y Apellidos -->
+          <div class="form-group">
+            <label for="client-name"><i class="fa-solid fa-user"></i> Nombre Completo:</label>
+            <input type="text" id="client-name" name="client-name" placeholder="Ej: Gabriel Alejandro Garay">
+            <span class="field-error" id="err-name" style="display: none;"></span>
+          </div>
+
+          <!-- Celular / WhatsApp -->
+          <div class="form-group">
+            <label for="client-phone"><i class="fa-solid fa-phone"></i> Celular / WhatsApp:</label>
+            <input type="tel" id="client-phone" name="client-phone" placeholder="Ej: 78854844">
+            <span class="field-error" id="err-phone" style="display: none;"></span>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="form-group">
+            <label for="client-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico:</label>
+            <input type="email" id="client-email" name="client-email" placeholder="cliente@correo.com">
+            <span class="field-error" id="err-email" style="display: none;"></span>
+          </div>
+
+          <!-- Modalidad de Entrega -->
+          <div class="form-group">
+            <label for="wally-category"><i class="fa-solid fa-truck-fast"></i> Modalidad de Entrega:</label>
+            <select id="wally-category" name="wally-category">
+              <option value="domicilio">Delivery a Domicilio (Ciudad)</option>
+              <option value="showroom">Recojo en Showroom Central (Sin costo)</option>
+              <option value="encomienda">Encomienda Nacional (9 Departamentos)</option>
+            </select>
+          </div>
+
+          <!-- Método de Pago -->
+          <div class="form-group">
+            <label for="payment-method"><i class="fa-solid fa-credit-card"></i> Forma de Pago:</label>
+            <select id="payment-method" name="payment-method">
+              <option value="qr">Pago QR Simple (BNB / BCP / Mercantil / Yape)</option>
+              <option value="tigo-money">Billetera Móvil Tigo Money</option>
+              <option value="efectivo">Efectivo Contra Entrega</option>
+              <option value="transferencia">Transferencia Bancaria</option>
+            </select>
+          </div>
+
+          <!-- Adicionales de Presentación y Envío -->
+          <div class="form-group">
+            <label><i class="fa-solid fa-gift"></i> Opciones Adicionales de Empaque:</label>
+            <div class="checkboxes-wrapper">
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-ball" name="add-ball" value="15"> Caja Rígida de Regalo + Tarjeta Dedicatoria (+15 Bs)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-vests" name="add-vests" value="20"> Envío Express Prioritario en menos de 2 Horas (+20 Bs)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-water" name="add-water" value="10"> Bolsa Tote Bag Ecológica de Lienzo UrbanVogue (+10 Bs)
+              </label>
+            </div>
+          </div>
+
+          <!-- Dirección / Notas de Entrega -->
+          <div class="form-group">
+            <label for="client-notes"><i class="fa-solid fa-location-crosshairs"></i> Dirección o Referencia de Entrega:</label>
+            <textarea id="client-notes" name="client-notes" rows="2"
+              placeholder="Ej: Av. América esq. Libertador, Edificio Torre Azul Piso 3..."></textarea>
+          </div>
+
+          <!-- Resumen de Costo y Confirmación (Live jQuery Calculator) -->
+          <div class="reservation-summary-panel">
+            <div class="summary-line">
+              <span>Prenda seleccionada:</span>
+              <strong id="summary-court">Prenda 1: Hoodie Tokyo Heavyweight</strong>
+            </div>
+            <div class="summary-line">
+              <span>Cantidad solicitada:</span>
+              <strong id="summary-hours">1 Unidad(es)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Talla elegida:</span>
+              <strong id="summary-time">Talla L (En Stock)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Garantía de Cambio de Talla:</span>
+              <strong id="summary-guarantee">Incluida (7 días)</strong>
+            </div>
+            <div class="summary-line total-highlight">
+              <span>Total a Pagar (Prendas + Extras):</span>
+              <strong id="summary-total" class="total-amount">180 BOB</strong>
+            </div>
+          </div>
+
+          <!-- Alertas de respuesta para jQuery -->
+          <div id="booking-alert-error" class="alert-box error" style="display: none;"></div>
+          <div id="booking-alert-success" class="alert-box success" style="display: none;"></div>
+
+          <!-- Botón de Envío (inicia deshabilitado hasta validar) -->
+          <button type="submit" id="btn-submit-booking" class="btn btn-submit btn-disabled" disabled>
+            <i class="fa-solid fa-circle-check"></i> Confirmar Pedido en UrbanVogue
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. SECCIÓN GUÍA DE TALLAS Y GARANTÍAS DE CALIDAD (.fadeToggle)
+       ========================================== -->
+  <section id="rules-section" class="rules-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-shield-heart"></i> Garantías de Calidad y Guía de Tallas</h3>
+      <p>Compra con total seguridad. Todas nuestras prendas pasan por control de calidad textil.</p>
+      <button type="button" id="toggle-size-guide-btn" class="accordion-toggle-btn" style="margin-top:12px;">
+        <i class="fa-solid fa-ruler-combined"></i> <span>Mostrar / Ocultar Tabla de Medidas (fadeToggle)</span>
+      </button>
+    </div>
+
+    <!-- Tabla interactiva con .fadeToggle() -->
+    <div id="size-guide-box" class="filter-controls-card" style="display: none; margin-bottom: 24px;">
+      <h4 style="margin-bottom: 10px; color: #312e81;"><i class="fa-solid fa-table"></i> Tabla Referencial de Medidas (cm)</h4>
+      <p style="font-size: 0.88rem; margin-bottom: 10px;">Medidas tomadas en prenda extendida sobre superficie plana:</p>
+      <div class="size-table-grid">
+        <div class="size-pill"><strong>Talla XS:</strong> Pecho 50cm | Largo 66cm</div>
+        <div class="size-pill"><strong>Talla S:</strong> Pecho 53cm | Largo 69cm</div>
+        <div class="size-pill"><strong>Talla M:</strong> Pecho 56cm | Largo 72cm</div>
+        <div class="size-pill"><strong>Talla L:</strong> Pecho 59cm | Largo 75cm</div>
+        <div class="size-pill"><strong>Talla XL:</strong> Pecho 62cm | Largo 78cm</div>
+      </div>
+    </div>
+
+    <div class="rules-grid">
+      <div class="rule-card">
+        <i class="fa-solid fa-rotate"></i>
+        <h5>Cambio de Talla Gratis</h5>
+        <p>Si la talla no te queda como esperabas, tienes hasta 7 días calendario para solicitar el cambio inmediato con etiquetas intactas.</p>
+      </div>
+      <div class="rule-card">
+        <i class="fa-solid fa-award"></i>
+        <h5>Algodón Peruano Certificado</h5>
+        <p>Trabajamos exclusivamente con fibras naturales peinadas y mezclilla pre-lavada que no destiñe ni pierde su estructura original.</p>
+      </div>
+      <div class="rule-card">
+        <i class="fa-solid fa-truck-ramp-box"></i>
+        <h5>Despachos a Nivel Nacional</h5>
+        <p>Entregas en el día dentro del radio urbano y envíos certificados por encomienda aérea o terrestre a los 9 departamentos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4.5 SISTEMA DE EVENTOS Y BITÁCORA CON TIMESTAMP
+       ========================================== -->
+  <section id="event-log-section" class="event-log-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-clock-rotate-left"></i> Sistema de Eventos y Bitácora con Timestamp</h3>
+      <p>Registro interactivo en tiempo real de todas las acciones en la tienda (`click`, `filter`, `change`, `blur`, `submit`).</p>
+      <div class="log-controls-bar">
+        <button type="button" id="toggle-log-btn" class="accordion-toggle-btn">
+          <i class="fa-solid fa-eye-slash"></i> <span>Ocultar / Mostrar Bitácora (fadeToggle)</span>
+        </button>
+        <button type="button" id="clear-log-btn" class="accordion-toggle-btn btn-clear-log">
+          <i class="fa-solid fa-trash-can"></i> Limpiar Historial
+        </button>
+      </div>
+    </div>
+
+    <div id="log-collapsible-box" class="filter-controls-card">
+      <div class="log-stats-row">
+        <div class="stat-badge">
+          <span>Eventos Registrados:</span>
+          <strong id="stat-total-events">0</strong>
+        </div>
+        <div class="stat-badge">
+          <span>Filtros Aplicados:</span>
+          <strong id="stat-filter-events">0</strong>
+        </div>
+        <div class="stat-badge">
+          <span>Compras Confirmadas:</span>
+          <strong id="stat-order-events">0</strong>
+        </div>
+      </div>
+
+      <div id="activity-log-list" class="activity-log-list">
+        <!-- Eventos registrados dinámicamente con jQuery y Timestamp -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. SECCIÓN INTERACTIVA DE REDES SOCIALES E INTEGRACIÓN
+       ========================================== -->
+  <section id="social-section" class="social-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-share-nodes"></i> Comunidad y Redes Sociales Oficiales</h3>
+      <p>Síguenos para ver lanzamientos en vivo, outfits de clientes y descuentos exclusivos por temporada.</p>
+    </div>
+
+    <div class="social-grid">
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="social-card" data-network="Instagram Oficial (@urbanvogue.bo)">
+        <i class="fa-brands fa-instagram"></i>
+        <h5>Instagram</h5>
+        <span>@urbanvogue.bo</span>
+        <small class="social-action">Ver Lookbook & Reels</small>
+      </a>
+      <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-card" data-network="TikTok Live Shopping (@urbanvogue.live)">
+        <i class="fa-brands fa-tiktok"></i>
+        <h5>TikTok Live</h5>
+        <span>@urbanvogue.live</span>
+        <small class="social-action">Transmisiones Diarias</small>
+      </a>
+      <a href="https://facebook.com" target="_blank" rel="noopener" class="social-card" data-network="Facebook Tienda Oficial (UrbanVogue Bolivia)">
+        <i class="fa-brands fa-facebook-f"></i>
+        <h5>Facebook</h5>
+        <span>/UrbanVogueBolivia</span>
+        <small class="social-action">Catálogo y Reseñas</small>
+      </a>
+      <a href="https://wa.me/59178854844" target="_blank" rel="noopener" class="social-card" data-network="WhatsApp Ventas Directas (+591 78854844)">
+        <i class="fa-brands fa-whatsapp"></i>
+        <h5>WhatsApp VIP</h5>
+        <span>(+591) 78854844</span>
+        <small class="social-action">Atención Inmediata</small>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. PIE DE PÁGINA Y DATOS FORMALES DE LA TIENDA
+       ========================================== -->
+  <footer id="contact-section" class="main-footer">
+    <div class="footer-container container">
+      <div class="footer-col">
+        <h5>UrbanVogue Studio</h5>
+        <p>Tienda boliviana de moda urbana, streetwear y prendas contemporáneas de edición limitada con envíos garantizados a todo el país.</p>
+        <p><i class="fa-solid fa-location-dot"></i> Av. América esq. Pando, Galería Comercial local #14, Bolivia</p>
+        <p><i class="fa-solid fa-id-card"></i> NIT: 4829104019 • Licencia de Funcionamiento Vigente</p>
+      </div>
+      <div class="footer-col">
+        <h5>Horarios de Showroom</h5>
+        <p><i class="fa-solid fa-calendar"></i> Lunes a Sábado (Atención continua)</p>
+        <p><i class="fa-solid fa-clock"></i> 09:30 - 21:00 hrs</p>
+        <p><i class="fa-brands fa-whatsapp"></i> Pedidos y Consultas: (+591) 78854844</p>
+        <p><i class="fa-solid fa-envelope"></i> ventas@urbanvogue.bo</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación Rápida</h5>
+        <ul>
+          <li><a href="#hero-section">Inicio y Colección</a></li>
+          <li><a href="#filter-section">Catálogo de Prendas</a></li>
+          <li><a href="#booking-section">Realizar Pedido Online</a></li>
+          <li><a href="#rules-section">Guía de Tallas y Cambios</a></li>
+          <li><a href="#social-section">Redes Sociales Oficiales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 UrbanVogue Studio - Todos los derechos reservados. Proyecto Personal desarrollado para Diseño Web II (UPDS).</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       7. COMPONENTE MODAL UI (VENTANA EMERGENTE DE CONFIRMACIÓN)
+       ========================================== -->
+  <div id="modal-overlay" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h4><i class="fa-solid fa-bag-shopping"></i> Confirmar Orden de Compra — UrbanVogue</h4>
+        <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instructions">Verifica el resumen de tu pedido antes de procesar el despacho:</p>
+
+        <div class="modal-details-box">
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-shirt"></i> Prenda Seleccionada:</span>
+            <strong id="modal-court-name">Prenda 1: Hoodie Tokyo Heavyweight</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-user"></i> Comprador:</span>
+            <strong id="modal-client-name">Gabriel Garay</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-calendar-day"></i> Entrega & Talla:</span>
+            <strong id="modal-schedule">2026-11-09 (Talla L)</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-shield-halved"></i> Garantía de Tienda:</span>
+            <strong id="modal-guarantee">Cambio de Talla Gratis (7 días)</strong>
+          </div>
+          <div class="modal-detail-row highlight-row">
+            <span><i class="fa-solid fa-money-bill-wave"></i> Total a Cancelar:</span>
+            <strong id="modal-total-amount">180 BOB (1 Unidad)</strong>
+          </div>
+        </div>
+
+        <!-- Temporizador Asíncrono de Reserva de Stock (30s) -->
+        <div class="modal-timer-banner">
+          <i class="fa-solid fa-stopwatch"></i>
+          <span>Stock reservado temporalmente por: <strong id="modal-countdown">00:30s</strong></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-cancel-btn" class="btn btn-modal-cancel">Cancelar</button>
+        <button type="button" id="modal-confirm-btn" class="btn btn-modal-confirm">Confirmar Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       8. FEEDBACK DINÁMICO FLOTANTE (TOAST ALERT)
+       ========================================== -->
+  <div id="toast-container" class="toast-container">
+    <div id="toast-alert" class="toast-card" style="display: none;">
+      <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <div class="toast-content">
+        <h5 id="toast-title">¡Pedido Confirmado con Éxito!</h5>
+        <p id="toast-message">Tu prenda ha sido apartada para despacho en UrbanVogue Studio.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: jQuery y script de interacciones -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
