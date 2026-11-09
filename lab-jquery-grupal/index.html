@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrillHouse Burger Club - Hamburguesería Artesanal & Bitácora de Eventos</title>
+  <!-- Enlace a la hoja de estilos CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome para iconos gastronómicos, interfaz y controles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="theme-light">
+
+  <!-- ==========================================
+       1. ENCABEZADO Y MENÚ HAMBURGUESA + MODO OSCURO/CLARO
+       ========================================== -->
+  <header id="main-header">
+    <div class="header-container">
+
+      <!-- Logotipo de la Entidad: GrillHouse Burger Club -->
+      <div class="logo-box">
+        <span class="logo-icon"><i class="fa-solid fa-burger"></i></span>
+        <h1 class="brand-title">Grill<span>House</span> <small class="brand-sub">Burger Club</small></h1>
+        <!-- Indicador de Estado UI -->
+        <div class="status-indicator-badge">
+          <span class="status-dot"></span>
+          <span class="status-text">Parrilla Encendida</span>
+        </div>
+      </div>
+
+      <!-- Barra de navegación con Menú Hamburguesa -->
+      <nav id="navbar" class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#hero-section" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li><a href="#filter-section" class="nav-link"><i class="fa-solid fa-utensils"></i> Menú de Burgers</a></li>
+          <li><a href="#booking-section" class="nav-link"><i class="fa-solid fa-receipt"></i> Armar Pedido</a></li>
+          <li><a href="#event-log-section" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Bitácora Timestamp</a></li>
+          <li><a href="#rules-section" class="nav-link"><i class="fa-solid fa-fire-burner"></i> Nuestra Cocina</a></li>
+          <li><a href="#social-section" class="nav-link"><i class="fa-solid fa-share-nodes"></i> Redes Sociales</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de cabecera: Modo Oscuro/Claro y Botón Hamburguesa -->
+      <div class="header-actions">
+        <!-- Función: Modo Oscuro / Claro -->
+        <button id="theme-toggle-btn" class="action-btn theme-btn" aria-label="Cambiar tema claro/oscuro"
+          title="Cambiar tema claro/oscuro">
+          <i class="fa-solid fa-moon icon-moon"></i>
+          <i class="fa-solid fa-sun icon-sun" style="display: none;"></i>
+        </button>
+
+        <!-- Función: Botón Menú Hamburguesa -->
+        <button id="hamburger-btn" class="action-btn hamburger-btn" aria-label="Abrir menú de navegación">
+          <span class="bar bar-1"></span>
+          <span class="bar bar-2"></span>
+          <span class="bar bar-3"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================
+       SECCIÓN HERO / PRESENTACIÓN HAMBURGUESERÍA
+       ========================================== -->
+  <section id="hero-section" class="hero-section">
+    <div class="hero-content">
+      <span class="hero-badge"><i class="fa-solid fa-fire-flame-curved"></i> 100% Carne de Res Seleccionada a la Parrilla & Pan Brioche Artesanal</span>
+      <h2>GrillHouse Burger Club: El Sabor Real de la Brasa</h2>
+      <p>Disfruta nuestras hamburguesas gourmet ahumadas al momento, combos parrilleros y acompañamientos crujientes.
+        Explora nuestro menú interactivo, programa tu turno de entrega o reserva y monitorea cada acción en tiempo real.</p>
+      <div class="hero-actions">
+        <a href="#filter-section" class="btn btn-primary"><i class="fa-solid fa-burger"></i> Ver Menú de Hamburguesas</a>
+        <a href="#booking-section" class="btn btn-secondary"><i class="fa-solid fa-motorcycle"></i> Realizar Pedido Ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       2. SECCIÓN DE FILTRADOS POR CATEGORÍAS Y ESPECIALIDADES DE BURGERS
+       ========================================== -->
+  <section id="filter-section" class="filter-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-filter"></i> Catálogo Gastronómico GrillHouse</h3>
+      <p>Filtra nuestro menú por <strong>Categoría de Producto</strong> y <strong>Especialidad de Parrilla</strong>.</p>
+
+      <!-- Pestaña Acordeón para Plegar / Desplegar Catálogo (.slideToggle) -->
+      <button type="button" id="toggle-catalog-btn" class="accordion-toggle-btn" aria-expanded="true">
+        <span class="toggle-text"><i class="fa-solid fa-eye-slash"></i> Ocultar Menú de Hamburguesas</span>
+        <i class="fa-solid fa-chevron-up toggle-icon"></i>
+      </button>
+    </div>
+
+    <!-- Contenedor Plegable del Catálogo (Filtros + Grilla de Tarjetas) -->
+    <div id="catalog-collapsible-wrapper" class="catalog-collapsible-content">
+
+      <!-- Controles de Filtros -->
+      <div class="filter-controls-card">
+
+        <!-- Filtro Tipo Principal: Categoría del Menú -->
+        <div class="filter-group">
+          <label class="filter-title"><i class="fa-solid fa-utensils"></i> 1. Categoría del Menú:</label>
+          <div class="filter-buttons-wrapper" id="type-filter-buttons">
+            <button class="filter-btn type-btn active" data-type="all">Todo el Menú</button>
+            <button class="filter-btn type-btn" data-type="hamburguesas"><i class="fa-solid fa-burger"></i> Hamburguesas Artesanales</button>
+            <button class="filter-btn type-btn" data-type="combos"><i class="fa-solid fa-boxes-stacked"></i> Combos Completos</button>
+            <button class="filter-btn type-btn" data-type="acompanamientos"><i class="fa-solid fa-bowl-food"></i> Sides & Malteadas</button>
+          </div>
+        </div>
+
+        <!-- Filtro Subtipo: Especialidad de Cocina -->
+        <div class="filter-group">
+          <label class="filter-title"><i class="fa-solid fa-sliders"></i> 2. Subtipo de Especialidad y Tamaño:</label>
+          <div class="filter-buttons-wrapper" id="subtype-filter-buttons">
+            <button class="filter-btn subtype-btn active" data-subtype="all">Todas las especialidades</button>
+            <button class="filter-btn subtype-btn" data-subtype="vip"><i class="fa-solid fa-crown"></i> Línea Gourmet VIP</button>
+            <button class="filter-btn subtype-btn" data-subtype="doble"><i class="fa-solid fa-layer-group"></i> Doble Carne / Smash</button>
+            <button class="filter-btn subtype-btn" data-subtype="clasica"><i class="fa-solid fa-star"></i> Clásicas de la Casa</button>
+            <button class="filter-btn subtype-btn" data-subtype="economica"><i class="fa-solid fa-tag"></i> Promo Económica</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Grilla de Tarjetas del Menú -->
+      <div class="courts-grid" id="courts-container">
+
+        <!-- Producto 1: Smoky Bourbon BBQ - Hamburguesa VIP Doble -->
+        <article class="court-card" data-type="hamburguesas" data-subtype="vip doble">
+          <div class="court-badge badge-vip">VIP • Doble Carne 360g</div>
+          <img
+            src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=700&q=85"
+            alt="Burger 1 Smoky Bourbon BBQ Doble" class="court-img">
+          <div class="court-info">
+            <h4>Burger 1: "Smoky Bourbon BBQ" (Doble Res)</h4>
+            <p class="court-desc">Doble medallón de res a la brasa (360g), cuatro láminas de queso cheddar inglés, tocino ahumado crocante, aros de cebolla y salsa BBQ al bourbon en pan brioche.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-fire"></i> Doble 360g</span>
+              <span class="tag"><i class="fa-solid fa-bacon"></i> Tocino Ahumado</span>
+              <span class="tag"><i class="fa-solid fa-cheese"></i> Cheddar x4</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">48 Bs <span>/ orden</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-1"
+                data-court-name="Burger 1: Smoky Bourbon BBQ (Doble)" data-court-price="48">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 2: Truffle Cheese Master - Hamburguesa VIP -->
+        <article class="court-card" data-type="hamburguesas" data-subtype="vip">
+          <div class="court-badge badge-vip">VIP • Receta de Autor</div>
+          <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=85"
+            alt="Burger 2 Truffle Cheese Master" class="court-img">
+          <div class="court-info">
+            <h4>Burger 2: "Truffle Cheese Master" (Gourmet)</h4>
+            <p class="court-desc">Medallón grueso de bife chorizo madurado, queso suizo fundido, champiñones salteados al ajillo, cebolla caramelizada y mayonesa artesanal de trufa negra.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-award"></i> Corte Bife</span>
+              <span class="tag"><i class="fa-solid fa-seedling"></i> Champiñones</span>
+              <span class="tag"><i class="fa-solid fa-bread-slice"></i> Brioche Dorado</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">52 Bs <span>/ orden</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-2"
+                data-court-name="Burger 2: Truffle Cheese Master" data-court-price="52">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 3: Classic American Smash - Hamburguesa Doble Clásica -->
+        <article class="court-card" data-type="hamburguesas" data-subtype="doble clasica">
+          <div class="court-badge">Clásica • Smash Burger</div>
+          <img
+            src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=85"
+            alt="Burger 3 Classic American Smash" class="court-img">
+          <div class="court-info">
+            <h4>Burger 3: "Classic American Smash" (Costra Dorada)</h4>
+            <p class="court-desc">Doble carne aplastada en plancha de hierro a alta temperatura para bordes ultra crujientes, pepinillos dulces, cebolla blanca picada y salsa secreta GrillHouse.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-burst"></i> Técnica Smash</span>
+              <span class="tag"><i class="fa-solid fa-pepper-hot"></i> Salsa Secreta</span>
+              <span class="tag"><i class="fa-solid fa-star"></i> Favorita</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">38 Bs <span>/ orden</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-3"
+                data-court-name="Burger 3: Classic American Smash" data-court-price="38">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 4: Combo Parrillero Dúo - Combo VIP Clásica -->
+        <article class="court-card" data-type="combos" data-subtype="vip clasica">
+          <div class="court-badge badge-vip">Combo Dúo • Para Compartir</div>
+          <img
+            src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=700&q=85"
+            alt="Combo 4 Parrillero Duo Completo" class="court-img">
+          <div class="court-info">
+            <h4>Combo 4: "Pack Parrillero Dúo" (2 Burgers + Sides)</h4>
+            <p class="court-desc">Incluye 2 Hamburguesas Clásicas de la Casa, 1 canasta familiar de papas rústicas con cheddar y tocino, 6 aros de cebolla y 2 bebidas de 500ml a elección.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-user-group"></i> 2 Personas</span>
+              <span class="tag"><i class="fa-solid fa-French-fries"></i> Papas + Aros</span>
+              <span class="tag"><i class="fa-solid fa-bottle-water"></i> 2 Bebidas</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">85 Bs <span>/ combo</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-4"
+                data-court-name="Combo 4: Pack Parrillero Dúo" data-court-price="85">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 5: Combo Burger Club Individual - Combo Económica Clásica -->
+        <article class="court-card" data-type="combos" data-subtype="clasica economica">
+          <div class="court-badge badge-eco">Promo • Combo Individual</div>
+          <img
+            src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=700&q=85"
+            alt="Combo 5 Burger Club Individual" class="court-img">
+          <div class="court-info">
+            <h4>Combo 5: "Combo Universitario Club" (Completo)</h4>
+            <p class="court-desc">Hamburguesa clásica de 180g con queso cheddar, lechuga hidropónica y tomate, acompañada de porción mediana de papas fritas crocantes y limonada frappé.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-burger"></i> Burger 180g</span>
+              <span class="tag"><i class="fa-solid fa-bolt"></i> Sale en 12 min</span>
+              <span class="tag"><i class="fa-solid fa-coins"></i> Súper Precio</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">42 Bs <span>/ combo</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-5"
+                data-court-name="Combo 5: Combo Universitario Club" data-court-price="42">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Producto 6: Canasta Crispy & Shake - Acompañamientos Económica -->
+        <article class="court-card" data-type="acompanamientos" data-subtype="economica">
+          <div class="court-badge badge-eco">Económica • Sides & Bebida</div>
+          <img
+            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=85"
+            alt="Pack 6 Canasta Crispy y Malteada" class="court-img">
+          <div class="court-info">
+            <h4>Pack 6: "Canasta Crispy & Shake" (Papas + Aros)</h4>
+            <p class="court-desc">Mix de papas fritas doradas con especias cajún, aros de cebolla rebozados en cerveza artesanal, dips de la casa y una malteada cremosa o limonada menta.</p>
+            <div class="court-tags">
+              <span class="tag"><i class="fa-solid fa-plate-wheat"></i> Mix Crujiente</span>
+              <span class="tag"><i class="fa-solid fa-glass-water"></i> Incluye Bebida</span>
+              <span class="tag"><i class="fa-solid fa-tags"></i> Tarifa Promo</span>
+            </div>
+            <div class="court-price-row">
+              <span class="price-val">30 Bs <span>/ pack</span></span>
+              <button class="btn btn-select-court" data-court-id="burger-6"
+                data-court-name="Pack 6: Canasta Crispy & Shake" data-court-price="30">Seleccionar</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. SECCIÓN DE PEDIDO: TURNOS DE COCINA Y FORMULARIO DEL CLIENTE
+       ========================================== -->
+  <section id="booking-section" class="booking-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-utensils"></i> Central de Pedidos y Reserva de Despacho</h3>
+      <p>Selecciona tu hamburguesa o combo, elige el bloque de horario de entrega y confirma los datos de tu orden.</p>
+    </div>
+
+    <div class="booking-grid-wrapper">
+
+      <!-- Columna Izquierda: Selección de Horarios de Cocina y Punto de Carne -->
+      <div class="booking-schedule-card">
+        <h4><i class="fa-solid fa-clock"></i> 1. Horario de Entrega y Personalización</h4>
+        <p class="schedule-subtitle">Elige la fecha y selecciona un turno de despacho disponible en cocina:</p>
+
+        <!-- Fecha del Pedido -->
+        <div class="form-row-single">
+          <label for="fecha-reserva">Fecha del pedido / reserva:</label>
+          <input type="date" id="fecha-reserva" name="fecha-reserva">
+          <span class="field-error" id="err-date" style="display: none;"></span>
+        </div>
+
+        <!-- Selector de Hamburguesa / Combo -->
+        <div class="form-row-single">
+          <label for="select-cancha-reserva">Plato Principal / Combo:</label>
+          <select id="select-cancha-reserva">
+            <option value="burger-1" data-precio="48" selected>Burger 1: Smoky Bourbon BBQ - Doble (48 Bs)</option>
+            <option value="burger-2" data-precio="52">Burger 2: Truffle Cheese Master - Gourmet (52 Bs)</option>
+            <option value="burger-3" data-precio="38">Burger 3: Classic American Smash (38 Bs)</option>
+            <option value="burger-4" data-precio="85">Combo 4: Pack Parrillero Dúo Completo (85 Bs)</option>
+            <option value="burger-5" data-precio="42">Combo 5: Combo Universitario Club (42 Bs)</option>
+            <option value="burger-6" data-precio="30">Pack 6: Canasta Crispy & Shake (30 Bs)</option>
+          </select>
+        </div>
+
+        <!-- Grilla Rápida de Turnos de Despacho (Botones interactivos jQuery) -->
+        <label class="schedule-block-title">Bloques de Despacho / Reserva de Mesa:</label>
+        <div class="time-slots-grid" id="turnos-grid">
+          <button type="button" class="btn-slot" data-inicio="18" data-fin="19">18:00 - 19:00</button>
+          <button type="button" class="btn-slot ocupado" data-inicio="19" data-fin="20">19:00 - 20:00 (Saturado)</button>
+          <button type="button" class="btn-slot active-slot" data-inicio="20" data-fin="21">20:00 - 21:00</button>
+          <button type="button" class="btn-slot" data-inicio="21" data-fin="22">21:00 - 22:00</button>
+          <button type="button" class="btn-slot ocupado" data-inicio="22" data-fin="23">22:00 - 23:00 (Saturado)</button>
+          <button type="button" class="btn-slot" data-inicio="23" data-fin="24">23:00 - 00:00</button>
+        </div>
+
+        <!-- Cantidad de Órdenes y Punto de Cocción -->
+        <div class="custom-range-box">
+          <h5>Personaliza la cantidad de órdenes y el turno elegido:</h5>
+          <div class="range-inputs-group">
+            <div class="input-item">
+              <label for="select-inicio">Bloque Horario:</label>
+              <select id="select-inicio">
+                <option value="18">18:00 - 19:00 hrs</option>
+                <option value="19">19:00 - 20:00 hrs (Saturado)</option>
+                <option value="20" selected>20:00 - 21:00 hrs</option>
+                <option value="21">21:00 - 22:00 hrs</option>
+                <option value="22">22:00 - 23:00 hrs (Saturado)</option>
+                <option value="23">23:00 - 00:00 hrs</option>
+              </select>
+            </div>
+            <div class="input-item">
+              <label for="select-fin">Cantidad de Órdenes:</label>
+              <select id="select-fin">
+                <option value="1" selected>1 Orden / Combo</option>
+                <option value="2">2 Órdenes / Combos</option>
+                <option value="3">3 Órdenes / Combos</option>
+                <option value="4">4 Órdenes / Combos</option>
+                <option value="5">5 Órdenes / Combos</option>
+              </select>
+            </div>
+          </div>
+          <span class="field-error" id="err-hours" style="display: none; margin-top: 8px;"></span>
+        </div>
+
+      </div>
+
+      <!-- Columna Derecha: FORMULARIO DE PEDIDO DE GRILLHOUSE -->
+      <div class="booking-form-card">
+        <h4><i class="fa-solid fa-file-invoice-dollar"></i> 2. Datos del Cliente y Entrega</h4>
+        <p class="form-instructions">Completa los datos obligatorios para enviar tu comanda a cocina:</p>
+
+        <form id="reservation-form" action="#" method="POST">
+
+          <!-- Nombre y Apellidos -->
+          <div class="form-group">
+            <label for="client-name"><i class="fa-solid fa-user"></i> Nombre Completo:</label>
+            <input type="text" id="client-name" name="client-name" placeholder="Ej: Gabriel Alejandro Garay">
+            <span class="field-error" id="err-name" style="display: none;"></span>
+          </div>
+
+          <!-- Celular / WhatsApp -->
+          <div class="form-group">
+            <label for="client-phone"><i class="fa-solid fa-phone"></i> Celular / WhatsApp:</label>
+            <input type="tel" id="client-phone" name="client-phone" placeholder="Ej: 78854844">
+            <span class="field-error" id="err-phone" style="display: none;"></span>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="form-group">
+            <label for="client-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico (Para Factura):</label>
+            <input type="email" id="client-email" name="client-email" placeholder="cliente@correo.com">
+            <span class="field-error" id="err-email" style="display: none;"></span>
+          </div>
+
+          <!-- Punto de Cocción y Modalidad -->
+          <div class="form-group">
+            <label for="wally-category"><i class="fa-solid fa-motorcycle"></i> Modalidad de Servicio & Punto de Carne:</label>
+            <select id="wally-category" name="wally-category">
+              <option value="delivery-apunto">Delivery a Domicilio • Carne A Punto (3/4)</option>
+              <option value="delivery-cocido">Delivery a Domicilio • Carne Bien Cocida</option>
+              <option value="salon-apunto">Consumo en Salón Grill • Carne A Punto (3/4)</option>
+              <option value="takeaway">Recojo en Mostrador (Take-Away)</option>
+            </select>
+          </div>
+
+          <!-- Método de Pago -->
+          <div class="form-group">
+            <label for="payment-method"><i class="fa-solid fa-credit-card"></i> Forma de Pago:</label>
+            <select id="payment-method" name="payment-method">
+              <option value="qr">Pago QR Simple (BNB / BCP / Mercantil / Fassil)</option>
+              <option value="tigo-money">Tigo Money</option>
+              <option value="efectivo">Efectivo en Caja / Contra Entrega</option>
+              <option value="tarjeta">Tarjeta Débito / Crédito (POS)</option>
+            </select>
+          </div>
+
+          <!-- Guarniciones y Extras -->
+          <div class="form-group">
+            <label><i class="fa-solid fa-plus-circle"></i> Adicionales Parrilleros:</label>
+            <div class="checkboxes-wrapper">
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-ball" name="add-ball" value="15"> Porción Extra Papas Cheddar & Bacon (+15 Bs)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-vests" name="add-vests" value="12"> Porción de 8 Aros de Cebolla Crispy (+12 Bs)
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="add-water" name="add-water" value="18"> Malteada Oreo / Limonada Grande 1L (+18 Bs)
+              </label>
+            </div>
+          </div>
+
+          <!-- Notas de Cocina / Dirección -->
+          <div class="form-group">
+            <label for="client-notes"><i class="fa-solid fa-comment-dots"></i> Dirección de Entrega o Notas de Cocina:</label>
+            <textarea id="client-notes" name="client-notes" rows="2"
+              placeholder="Ej: Av. América #450, sin pepinillos y salsa picante aparte..."></textarea>
+          </div>
+
+          <!-- Resumen de Costo y Confirmación (Live jQuery Calculator) -->
+          <div class="reservation-summary-panel">
+            <div class="summary-line">
+              <span>Menú seleccionado:</span>
+              <strong id="summary-court">Burger 1: Smoky Bourbon BBQ (Doble)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Cantidad solicitada:</span>
+              <strong id="summary-hours">1 Orden(es)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Turno de despacho:</span>
+              <strong id="summary-time">20:00 a 21:00 hrs</strong>
+            </div>
+            <div class="summary-line">
+              <span>Empaque Térmico Sellado:</span>
+              <strong id="summary-guarantee">Incluido Gratis (0 BOB)</strong>
+            </div>
+            <div class="summary-line total-highlight">
+              <span>Total Estimado (Menú + Extras):</span>
+              <strong id="summary-total" class="total-amount">48 BOB</strong>
+            </div>
+          </div>
+
+          <!-- Alertas de respuesta para jQuery -->
+          <div id="booking-alert-error" class="alert-box error" style="display: none;"></div>
+          <div id="booking-alert-success" class="alert-box success" style="display: none;"></div>
+
+          <!-- Botón de Envío (inicia deshabilitado hasta validar) -->
+          <button type="submit" id="btn-submit-booking" class="btn btn-submit btn-disabled" disabled>
+            <i class="fa-solid fa-circle-check"></i> Confirmar Pedido en GrillHouse
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. SISTEMA DE EVENTOS Y BITÁCORA CON TIMESTAMP (REQUISITO GRUPAL)
+       ========================================== -->
+  <section id="event-log-section" class="event-log-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-clock-rotate-left"></i> Sistema de Eventos y Bitácora con Timestamp</h3>
+      <p>Registro automático en vivo de cada interacción del usuario (`click`, `filter`, `change`, `blur`, `submit`) con marca de tiempo exacta.</p>
+      <div class="log-controls-bar">
+        <button type="button" id="toggle-log-btn" class="accordion-toggle-btn">
+          <i class="fa-solid fa-eye-slash"></i> <span>Ocultar / Mostrar Bitácora (fadeToggle)</span>
+        </button>
+        <button type="button" id="clear-log-btn" class="accordion-toggle-btn btn-clear-log">
+          <i class="fa-solid fa-trash-can"></i> Limpiar Historial
+        </button>
+      </div>
+    </div>
+
+    <div id="log-collapsible-box" class="filter-controls-card">
+      <div class="log-stats-row">
+        <div class="stat-badge">
+          <span>Eventos Registrados:</span>
+          <strong id="stat-total-events">0</strong>
+        </div>
+        <div class="stat-badge">
+          <span>Filtros Aplicados:</span>
+          <strong id="stat-filter-events">0</strong>
+        </div>
+        <div class="stat-badge">
+          <span>Pedidos Validados:</span>
+          <strong id="stat-order-events">0</strong>
+        </div>
+      </div>
+
+      <div id="activity-log-list" class="activity-log-list">
+        <!-- Eventos inyectados dinámicamente con jQuery y Timestamp -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. SECCIÓN ESTÁNDARES DE CALIDAD Y PARRILLA
+       ========================================== -->
+  <section id="rules-section" class="rules-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-fire-burner"></i> Compromiso de Calidad GrillHouse</h3>
+      <p>Cada hamburguesa se prepara bajo estrictas normas gastronómicas y de frescura.</p>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <i class="fa-solid fa-cow"></i>
+        <h5>Cortes 100% Res Fresca</h5>
+        <p>Molido diario en nuestra propia cocina sin conservantes ni congelados, logrando máxima jugosidad en cada bocado.</p>
+      </div>
+      <div class="rule-card">
+        <i class="fa-solid fa-bread-slice"></i>
+        <h5>Pan Brioche de Mantequilla</h5>
+        <p>Horneado cada mañana y sellado con mantequilla clarificada en plancha antes de armar tu hamburguesa.</p>
+      </div>
+      <div class="rule-card">
+        <i class="fa-solid fa-stopwatch"></i>
+        <h5>Entrega Caliente Garantizada</h5>
+        <p>Despachamos en empaque térmico aluminizado para que tus papas lleguen crocantes y el queso perfectamente fundido.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. SECCIÓN INTERACTIVA DE REDES SOCIALES E INTEGRACIÓN
+       ========================================== -->
+  <section id="social-section" class="social-section container">
+    <div class="section-header">
+      <h3><i class="fa-solid fa-share-nodes"></i> Síguenos en Redes Sociales</h3>
+      <p>Conéctate con GrillHouse Burger Club para promociones 2x1, sorteos y eventos en vivo.</p>
+    </div>
+
+    <div class="social-grid">
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="social-card" data-network="Instagram (@grillhouse.bo)">
+        <i class="fa-brands fa-instagram"></i>
+        <h5>Instagram</h5>
+        <span>@grillhouse.bo</span>
+        <small class="social-action">Fotos & Promos 2x1</small>
+      </a>
+      <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-card" data-network="TikTok Oficial (@grillhouse.burgers)">
+        <i class="fa-brands fa-tiktok"></i>
+        <h5>TikTok</h5>
+        <span>@grillhouse.burgers</span>
+        <small class="social-action">Videos de Parrilla</small>
+      </a>
+      <a href="https://facebook.com" target="_blank" rel="noopener" class="social-card" data-network="Facebook (GrillHouse Burger Club)">
+        <i class="fa-brands fa-facebook-f"></i>
+        <h5>Facebook</h5>
+        <span>/GrillHouseBurgerClub</span>
+        <small class="social-action">Menú y Eventos</small>
+      </a>
+      <a href="https://wa.me/59178854844" target="_blank" rel="noopener" class="social-card" data-network="WhatsApp Delivery (+591 78854844)">
+        <i class="fa-brands fa-whatsapp"></i>
+        <h5>WhatsApp Pedidos</h5>
+        <span>(+591) 78854844</span>
+        <small class="social-action">Delivery Directo</small>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       7. PIE DE PÁGINA Y CONTACTO DEL RESTAURANTE
+       ========================================== -->
+  <footer id="contact-section" class="main-footer">
+    <div class="footer-container container">
+      <div class="footer-col">
+        <h5>GrillHouse Burger Club</h5>
+        <p>Hamburguesería artesanal especializada en carnes a la brasa, smash burgers y malteadas de autor en un ambiente moderno.</p>
+        <p><i class="fa-solid fa-location-dot"></i> Av. América esq. Libertador #840, Cochabamba, Bolivia</p>
+        <p><i class="fa-solid fa-id-card"></i> NIT: 3948102015 • Registro Sanitario SENASAG Vigente</p>
+      </div>
+      <div class="footer-col">
+        <h5>Horarios de Atención</h5>
+        <p><i class="fa-solid fa-calendar"></i> Martes a Domingo (Incluye Feriados)</p>
+        <p><i class="fa-solid fa-clock"></i> 18:00 - 00:00 (Medianoche)</p>
+        <p><i class="fa-brands fa-whatsapp"></i> Central Delivery: (+591) 78854844</p>
+        <p><i class="fa-solid fa-envelope"></i> pedidos@grillhouse.bo</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación Rápida</h5>
+        <ul>
+          <li><a href="#hero-section">Inicio</a></li>
+          <li><a href="#filter-section">Menú de Hamburguesas</a></li>
+          <li><a href="#booking-section">Central de Pedidos</a></li>
+          <li><a href="#event-log-section">Bitácora Timestamp</a></li>
+          <li><a href="#social-section">Redes Sociales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 GrillHouse Burger Club - Todos los derechos reservados. Proyecto Grupal desarrollado para Diseño Web II (UPDS).</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       8. COMPONENTE MODAL UI (VENTANA EMERGENTE DE CONFIRMACIÓN)
+       ========================================== -->
+  <div id="modal-overlay" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h4><i class="fa-solid fa-burger"></i> Confirmar Comanda — GrillHouse</h4>
+        <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instructions">Revisa el detalle de tu pedido antes de enviarlo a la parrilla:</p>
+
+        <div class="modal-details-box">
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-utensils"></i> Plato / Combo:</span>
+            <strong id="modal-court-name">Burger 1: Smoky Bourbon BBQ</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-user"></i> Cliente:</span>
+            <strong id="modal-client-name">Gabriel Garay</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-calendar-day"></i> Fecha & Turno:</span>
+            <strong id="modal-schedule">2026-11-09 (20:00 - 21:00)</strong>
+          </div>
+          <div class="modal-detail-row">
+            <span><i class="fa-solid fa-box"></i> Empaque Térmico:</span>
+            <strong id="modal-guarantee">Incluido sin cargo</strong>
+          </div>
+          <div class="modal-detail-row highlight-row">
+            <span><i class="fa-solid fa-money-bill-wave"></i> Total a Cancelar:</span>
+            <strong id="modal-total-amount">48 BOB (1 Orden)</strong>
+          </div>
+        </div>
+
+        <!-- Temporizador Asíncrono de Confirmación de Cocina (30s) -->
+        <div class="modal-timer-banner">
+          <i class="fa-solid fa-stopwatch"></i>
+          <span>Tiempo Restante para Confirmar Turno de Cocina: <strong id="modal-countdown">00:30s</strong></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-cancel-btn" class="btn btn-modal-cancel">Cancelar</button>
+        <button type="button" id="modal-confirm-btn" class="btn btn-modal-confirm">Enviar a Cocina</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       9. FEEDBACK DINÁMICO FLOTANTE (TOAST ALERT)
+       ========================================== -->
+  <div id="toast-container" class="toast-container">
+    <div id="toast-alert" class="toast-card" style="display: none;">
+      <div class="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+      <div class="toast-content">
+        <h5 id="toast-title">¡Comanda Enviada a Cocina!</h5>
+        <p id="toast-message">Tu pedido está siendo preparado en GrillHouse Burger Club.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: jQuery y script de interacciones -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
